@@ -18,7 +18,7 @@ const logger = createLogger({
 });
 
 const persistConfig = {
-  key: "treasureGames",
+  key: "react-starter",
   storage,
   blacklist: [],
 };
