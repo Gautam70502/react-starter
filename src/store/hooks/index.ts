@@ -13,10 +13,10 @@ type ReducerName = keyof RootState;
 const useReducerData = (
   reducerName: ReducerName,
   attr: string,
-  defaultValue: never
+  defaultValue: never,
 ) => {
   return useSelector(
-    (state: RootState) => state?.[reducerName]?.[attr] || defaultValue
+    (state: RootState) => state?.[reducerName]?.[attr] || defaultValue,
   );
 };
 
@@ -25,7 +25,7 @@ const useStoreActions = <T>(actions: T) => {
   return useMemo(
     () => bindActionCreators(actions || {}, dispatch) as T,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [actions]
+    [actions],
   );
 };
 

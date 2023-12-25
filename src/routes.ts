@@ -1,13 +1,17 @@
 import Home from "src/pages/Home";
 
-const routes = [
+export const publicRoutes = [
   {
     path: "/",
     name: "Home",
     component: Home,
-    isPrivate: false,
-    layout: "public",
   },
 ];
 
-export default routes;
+export const privateRoutes = [
+  {
+    path: "/",
+    name: "Home",
+    component: Home, //we can add permission for different roles
+  },
+];
