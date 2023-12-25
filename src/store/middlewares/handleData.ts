@@ -11,7 +11,7 @@ const LIFECYCLE = {
 function safeMap(
   state: RootState,
   fn: (state: RootState, action: AnyAction) => RootState,
-  action: AnyAction
+  action: AnyAction,
 ) {
   switch (typeof fn) {
     case "function": {
@@ -27,7 +27,7 @@ function safeMap(
 export const handleData = (
   state: RootState,
   action: AnyAction,
-  handlers: AppHandler
+  handlers: AppHandler,
 ) => {
   const { meta } = action;
 
