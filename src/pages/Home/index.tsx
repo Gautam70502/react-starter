@@ -1,13 +1,17 @@
 import React from "react";
-import { useActions } from "src/store/actions";
+
+import { useActions } from "src/redux-toolkit/actions";
 
 const Home = () => {
-  const { logOutUser } = useActions(); //example of using useActions
+  const { setUser } = useActions(); //example of using useActions
+
   return (
     <div>
       Welcome User
       <div>
-        <button onClick={() => logOutUser()}>Log out</button>
+        <button onClick={() => setUser({ firstName: "", lastName: "" })}>
+          Log out
+        </button>
       </div>
     </div>
   );
