@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useActions } from "src/redux-toolkit/actions";
+import { useActions } from "src/store/actions";
 
 const Home = () => {
   const { setUser } = useActions(); //example of using useActions

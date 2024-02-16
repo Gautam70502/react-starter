@@ -1,8 +1,11 @@
-import * as authActions from "src/store/actions/auth";
-import { useStoreActions } from "src/store/hooks";
+import { useStoreActions } from "../hooks";
+
+import * as userAction from "./user";
+
+export * from "./user";
 
 export const useActions = () => {
   return useStoreActions({
-    ...authActions,
+    ...userAction,
   });
 };
