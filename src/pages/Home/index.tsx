@@ -1,13 +1,17 @@
 import React from "react";
+
 import { useActions } from "src/store/actions";
 
 const Home = () => {
-  const { logOutUser } = useActions(); //example of using useActions
+  const { setUser } = useActions(); //example of using useActions
+
   return (
     <div>
-      Welcome User
+      Welcome
       <div>
-        <button onClick={() => logOutUser()}>Log out</button>
+        <button onClick={() => setUser({ firstName: "", lastName: "" })}>
+          Log in
+        </button>
       </div>
     </div>
   );

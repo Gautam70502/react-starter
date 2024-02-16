@@ -1,46 +1,15 @@
-import {
-  AnyAction,
-  Middleware,
-  applyMiddleware,
-  compose,
-  legacy_createStore as createStore,
-} from "redux";
-import { createLogger } from "redux-logger";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import logger from "redux-logger";
+import { reducers } from "./reducers";
 
-import asyncActionCreator from "./middlewares/asyncActionCreator";
-import rootReducer from "./reducers";
-
-const logger = createLogger({
-  collapsed: true,
+export const store = configureStore({
+  reducer: reducers,
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(logger); // can add custom middleware
+  },
 });
 
-const emptyMiddleWare: Middleware = function fn1() {
-  return function fun2(next: (action: AnyAction) => AnyAction) {
-    return function fun3(action: AnyAction) {
-      return next(action);
-    };
-  };
-};
-
-let loggerMiddleWare = emptyMiddleWare;
-
-if (global.window) {
-  loggerMiddleWare = logger;
-}
-
-const store = createStore(
-  rootReducer,
-  compose(applyMiddleware(asyncActionCreator, thunk, loggerMiddleWare)),
-);
-
+// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
-export type AppHandler = {
-  request: (state: RootState) => RootState;
-  success: (state: RootState) => RootState;
-  failure: (state: RootState) => RootState;
-};
-
-export { store };
-export default store;

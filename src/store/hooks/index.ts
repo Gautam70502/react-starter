@@ -1,6 +1,6 @@
+import { bindActionCreators } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import { AppDispatch, RootState } from "..";
 
@@ -9,10 +9,11 @@ const useAppDispatch = () => useDispatch<AppDispatch>();
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 type ReducerName = keyof RootState;
+type AllSliceKeys = keyof RootState[keyof RootState];
 
 const useReducerData = (
   reducerName: ReducerName,
-  attr: string,
+  attr: AllSliceKeys,
   defaultValue: never,
 ) => {
   return useSelector(
