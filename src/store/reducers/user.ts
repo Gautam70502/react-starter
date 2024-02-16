@@ -3,7 +3,7 @@ import { IUser } from "src/modules/users/interface";
 import { setUser } from "../actions";
 
 export interface IUserSlice {
-  user: null | IUser; // @TODO: also defined user type
+  user: IUser | null; // @TODO: also defined user type
   loading: boolean;
 }
 
@@ -35,5 +35,4 @@ export const userSlice = createSlice({
   },
 });
 
-// export const { logout, setUser } = userSlice.actions;
 export default userSlice.reducer;

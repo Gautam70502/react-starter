@@ -7,10 +7,10 @@ const Home = () => {
 
   return (
     <div>
-      Welcome User
+      Welcome
       <div>
         <button onClick={() => setUser({ firstName: "", lastName: "" })}>
-          Log out
+          Log in
         </button>
       </div>
     </div>
