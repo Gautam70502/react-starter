@@ -66,7 +66,7 @@ export abstract class Api<T> {
         };
       })
       .catch((err) => {
-        throw { error: err, status: false };
+        throw err;
       });
   };
 
