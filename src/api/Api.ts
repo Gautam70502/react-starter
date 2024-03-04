@@ -57,12 +57,16 @@ export abstract class Api<T> {
         const response = await res.json();
 
         if (res.ok) {
-          return response;
+          return { data: response, status: true };
         }
-        throw new Error(response?.message || "Something went wrong.!");
+
+        throw {
+          error: response || new Error("Something went wrong.!"),
+          status: false,
+        };
       })
       .catch((err) => {
-        throw new Error(err);
+        throw { error: err, status: false };
       });
   };
 
