@@ -1,6 +1,6 @@
 import React from "react";
-import { Navigate, Route, Routes,BrowserRouter } from "react-router";
-
+import { Navigate, Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import classes from "./App.module.scss";
 import PrivateLayout from "./layout/PrivateLayout";
 import PublicLayout from "./layout/PublicLayout";
