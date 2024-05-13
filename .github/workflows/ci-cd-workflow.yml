@@ -27,5 +27,5 @@ jobs :
         yarn install 
     - name: build and test dependency.
       run: |
-        npm run build
-        npm test
+        yarn run build
+        yarn test
