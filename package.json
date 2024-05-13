@@ -27,6 +27,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start:clean": "rm -rf node_modules/ && rm -rf yarn.lock && yarn && yarn start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
