@@ -11,7 +11,7 @@ const App = () => {
         <Route path="/private/*" element={<PrivateLayout />} />
         <Route path="/*" element={<PublicLayout />} />
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes> 
+      </Routes>
     </div>
   );
 };
