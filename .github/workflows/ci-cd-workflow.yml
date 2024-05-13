@@ -42,10 +42,10 @@ jobs :
       uses : actions/download-artifact@v3
       with:
          name : build artifact
-         path : /build
+         path : ./build
     - name : deploying to github page
       uses : peaceiris/actions-gh-pages@v3    
       with:
         github_token: ${{ secrets.SECRET_KEY }} 
-        publish_dir: /build
+        publish_dir: ./build
          
