@@ -10,7 +10,7 @@ on :
  # what to do when trigger event occurs   
 jobs :
   build_and_test :
-    runs-on : ubuntu:latest
+    runs-on : ubuntu-latest
     
     strategy :
       matrix :  
