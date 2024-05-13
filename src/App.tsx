@@ -7,13 +7,11 @@ import PublicLayout from "./layout/PublicLayout";
 const App = () => {
   return (
     <div className={classes.app}>
-   
       <Routes>
         <Route path="/private/*" element={<PrivateLayout />} />
         <Route path="/*" element={<PublicLayout />} />
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-       
+      </Routes> 
     </div>
   );
 };
