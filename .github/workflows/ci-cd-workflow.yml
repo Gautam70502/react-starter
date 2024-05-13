@@ -1,0 +1,31 @@
+name : react-ci-cd
+
+# setting up trigger event
+on : 
+  push :
+    branches : [main]
+  pull_request :
+    branches: [main]
+
+ # what to do when trigger event occurs   
+jobs :
+  build_and_test :
+    runs-on : ubuntu:latest
+    
+    strategy :
+      matrix :  
+        node-version : [18.x]
+        
+    steps:    
+    - uses: actions/checkout@v2
+    - name: setup node
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install dependency
+    - run: |
+        npm install
+    - name: build and test dependency.
+    - run: |
+        npm run build
+        npm test
