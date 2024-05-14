@@ -35,11 +35,7 @@ jobs :
           path: ./build
     - name: copying netlify.toml to build folder
       run: cp netlify.toml build/
-  deploy:
-    needs : build
-    runs-on : ubuntu-latest
-
-    steps:
+ 
     - name: Deploy production to Netlify
       uses: South-Paw/action-netlify-deploy@v1.2.0
       with:
