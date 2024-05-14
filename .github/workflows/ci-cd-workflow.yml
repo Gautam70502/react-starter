@@ -34,10 +34,21 @@ jobs :
           name: build artifact
           path: ./build
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-          github_token: ${{ secrets.SECRET_TOKEN }}
-          publish_dir: ./build 
+  deploy :
+    needs : build
+    runs-on : ubuntu-latest
+    steps:
+    - name : Deploying to github page
+      run: |
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
+      env:
+          user_name: 'Gautam70502'
+          user_email: 'gautamrathod70502@gmail.com'
+          github_token: ${{ secrets.SECRET_KEY }}
+          repository: ${{github.repository}}
+          
       
           
