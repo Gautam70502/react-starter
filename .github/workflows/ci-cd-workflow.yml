@@ -43,7 +43,7 @@ jobs :
       run: |
           git config --global user.name Gautam70502
           git config --global user.email gautamrathod70502@gmail.com
-          git remote set-url origin `https://${{secrets.SECRET_KEY}}@github.com/Gautam70502/react-starter.git`
+          git remote set-url origin `https://@github.com/Gautam70502/react-starter.git`
           npm run deploy
       env:
           user_name: 'Gautam70502'
