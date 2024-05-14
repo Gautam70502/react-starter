@@ -25,7 +25,7 @@ const Home = () => {
     <div>
       Welcome
       <div>
-        <button onClick={handleClick}>Log in again again</button>
+        <button onClick={handleClick}>Log in</button>
       </div>
     </div>
   );
