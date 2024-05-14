@@ -40,6 +40,11 @@ jobs :
     needs : build
     runs-on : ubuntu-latest
     steps:
+    - name : downloading artifact
+      uses : actions/download-artifact@v3
+      with:
+         name : build artifact
+         path : ./build
     - name: Deploy production to Netlify
       uses: South-Paw/action-netlify-deploy@v1.2.0
       with:
