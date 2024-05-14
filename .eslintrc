@@ -44,7 +44,6 @@
     "react-hooks/exhaustive-deps": "warn",
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     "react/prop-types": 0,
-    "prettier/prettier": ["error"],
     "global-require": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/control-has-associated-label": "off",
@@ -90,6 +89,12 @@
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
       }
     ],
+     "prettier/prettier": [
+          "error", 
+          {
+            "endOfLine": "auto"
+          }
+      ],
     "no-restricted-imports": [
       "error",
       {
