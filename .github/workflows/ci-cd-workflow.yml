@@ -48,7 +48,7 @@ jobs :
           user_name: 'Gautam70502'
           user_email: 'gautamrathod70502@gmail.com'
           github_token: ${{ secrets.SECRET_KEY }}
-          repository: 'react-starter'
+          repository: 'https://github.com/Gautam70502/react-starter'
           
       
           
