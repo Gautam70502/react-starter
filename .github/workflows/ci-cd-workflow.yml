@@ -38,10 +38,11 @@ jobs :
     needs : build
     runs-on : ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name : Deploying to github page
       run: |
-          git config --global user.name $user_name
-          git config --global user.email $user_email
+          git config --global user.name Gautam70502
+          git config --global user.email gautamrathod70502@gmail.com
           git remote set-url origin `https://${{secrets.SECRET_KEY}}@github.com/Gautam70502/react-starter.git`
           npm run deploy
       env:
