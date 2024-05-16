@@ -52,6 +52,6 @@ jobs :
             sudo apt update
             sudo apt install -y docker
             sudo service docker start
-            sudo docker login --username ${{secrets.DOCKERHUB_USERNAME}} $ password: ${{secrets.DOCKERHUB_PASSWORD}}
+            echo "${{ secrets.DOCKERHUB_PASSWORD }}" | sudo docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             sudo docker pull ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
             sudo docker run --name react-app -p 3000:3000 gautamdockerpro/react-image:latest
