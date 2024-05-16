@@ -45,5 +45,5 @@ jobs :
     - name: Run docker Image  
       run: |
         docker pull gautamdockerpro/react-image:latest
-        docker run --name react-app -p 3000:3000 gautamdockerpro/react-image:latest
-        curl https://api.ipify.org
+        docker run --name react-app -d -p 3000:3000 gautamdockerpro/react-image:latest 
+        hostname -I
