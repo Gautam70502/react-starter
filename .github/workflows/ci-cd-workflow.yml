@@ -39,11 +39,11 @@ jobs :
 
     - uses: actions/checkout@v2
     - name: view files
-      run: ls
+      run: ls -la /home/runner/.ssh/
     - name: Deploy to EC2 Instance
       uses: easingthemes/ssh-deploy@main
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.deploy_key_Amazon }}
         REMOTE_HOST: ${{ secrets.HOST_DNS }}
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: home
@@ -53,7 +53,7 @@ jobs :
       with: 
         host: ${{ secrets.HOST_DNS }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
+        key: ${{ secrets.deploy_key_Amazon}}
         script: |
           sudo yum update
           sudo yum install -y docker
