@@ -32,7 +32,8 @@ jobs :
         push : true
         tags : ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
 
-  CD :      
+  CD :   
+    needs : CI   
     runs-on : ubuntu-latest
     steps :
 
@@ -40,7 +41,7 @@ jobs :
       with: 
         username : ${{secrets.DOCKERHUB_USERNAME}}
         password : ${{secrets.DOCKERHUB_PASSWORD}}
-        
+
     - name: Run docker Image  
       run: |
         docker pull gautamdockerpro/react-image:latest
