@@ -47,8 +47,7 @@ jobs :
         REMOTE_USER: ${{ secrets.USERNAME }}
         TARGET: home
       run: |
-          echo "$SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ec2-user@${REMOTE_HOST}
+          echo "${SSH_PRIVATE_KEY}" > private_key && chmod 400 private_key
           ssh -i private_key ec2-user@${REMOTE_HOST}
             sudo apt update 2>/dev/null | grep packages | cut -d '.' -f 1
             sudo apt install -y docker
