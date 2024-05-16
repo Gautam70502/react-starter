@@ -38,7 +38,8 @@ jobs :
     steps :
 
     - uses: actions/checkout@v2
-
+    - name: Create SSH directory
+      run: mkdir -p ~/.ssh
     - name: Deploy to EC2 Instance
       uses: easingthemes/ssh-deploy@main
       env:
