@@ -37,3 +37,4 @@ jobs :
     - name: execute command
       run: |
         docker pull gautamdockerpro/react-image:latest
+        docker run --name react-app -p 3000:3000 react-image:latest
