@@ -31,3 +31,8 @@ jobs :
         file: Dockerfile
         push : true
         tags : ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
+
+    - name: Run Docker Image
+       uses: docker/cli-action@v1
+       with:
+        docker_cmd: react-image:latest    
