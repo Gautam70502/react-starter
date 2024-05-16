@@ -33,9 +33,9 @@ jobs :
         tags : ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
 
     - name: Run Docker Image
-      run: |
-        docker pull gautamdockerpro/react-image:latest
-        docker run --name react-app -p 3000:3000 react-image:latest
       with:
         username : ${{secrets.DOCKERHUB_USERNAME}}
         password : ${{secrets.DOCKERHUB_PASSWORD}}
+      run: |
+        docker pull gautamdockerpro/react-image:latest
+        docker run --name react-app -p 3000:3000 react-image:latest
