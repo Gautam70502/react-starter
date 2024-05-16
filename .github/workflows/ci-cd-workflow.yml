@@ -39,7 +39,7 @@ jobs :
 
     - uses: actions/checkout@v2
     - name: view files
-      run: ls -la /home/runner/.ssh/
+      run: ls -la /home/runner/
     - name: Deploy to EC2 Instance
       uses: easingthemes/ssh-deploy@main
       env:
