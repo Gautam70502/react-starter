@@ -48,7 +48,8 @@ jobs :
         TARGET: home
       run: |
           echo "$SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
-          ssh  -i private_key ec2-user@${REMOTE_HOST}
+          ssh -o StrictHostKeyChecking=no -i private_key ec2-user@${REMOTE_HOST}
+          ssh -i private_key ec2-user@${REMOTE_HOST}
             sudo apt update
             sudo apt install -y docker
             sudo service docker start
