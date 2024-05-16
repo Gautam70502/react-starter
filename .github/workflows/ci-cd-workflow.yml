@@ -30,7 +30,7 @@ jobs :
         context: .
         file: Dockerfile
         push : true
-        stags : ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
+        tags : ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
 
     - name: Run Docker Image
       uses: actions/checkout@v2  
