@@ -34,5 +34,6 @@ jobs :
 
     - name: Run Docker Image
       uses: actions/checkout@v2  
+      name: execute command
       run: |
         docker pull gautamdockerpro/react-image:latest
