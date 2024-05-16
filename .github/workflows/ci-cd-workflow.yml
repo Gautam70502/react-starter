@@ -50,8 +50,9 @@ jobs :
           echo "$SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ec2-user@${REMOTE_HOST}
           ssh -i private_key ec2-user@${REMOTE_HOST}
-            sudo apt update
+            sudo apt update 2>/dev/null | grep packages | cut -d '.' -f 1
             sudo apt install -y docker
+            docker --version
             sudo service docker start
             echo "${{ secrets.DOCKERHUB_PASSWORD }}" | sudo docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             sudo docker pull ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
