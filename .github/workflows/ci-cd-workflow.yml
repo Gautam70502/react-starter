@@ -33,6 +33,6 @@ jobs :
         stags : ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
 
     - name: Run Docker Image
-      uses: docker/cli-action@v1
-      with:
-        docker_cmd: react-image:latest    
+      uses: actions/checkout@v2  
+      run: |
+        docker pull gautamdockerpro/react-image:latest
