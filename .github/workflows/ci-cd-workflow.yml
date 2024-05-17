@@ -34,7 +34,7 @@ jobs :
 
   CD :   
     needs : CI   
-    runs-on : [ec2-runner]
+    runs-on : self-hosted
     steps :
   
     - name: Pull image from docker hub
