@@ -44,5 +44,11 @@ jobs :
         key :  ${{secrets.EC2_SSH_KEY}}
         envs : GITHUB_SHA
         script : |
-          echo "hello world"
+          sudo yum update
+          sudo yum install -y docker
+          docker --version
+          sudo service docker start
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | sudo docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          sudo docker pull ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
+          sudo docker run --name react-app -p 3000:3000 gautamdockerpro/react-image:latest
           
