@@ -34,7 +34,7 @@ jobs :
 
   CD :   
     needs : CI
-    runs-on : [self-hosted,ec2-runner]
+    runs-on : [ec2-runner]
     steps :
     - name : pull image and run on ec2
       uses : appleboy/ssh-action@master
