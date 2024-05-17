@@ -37,23 +37,9 @@ jobs :
     runs-on : self-hosted
     steps :
 
-    - uses: actions/checkout@v2
-    - name: view files
-      run: ls -la /home/runner/
-    - name: Deploy to EC2 Instance
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.HOST_DNS }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: home
-      run: |
-          echo "${SSH_PRIVATE_KEY}" > private_key && chmod 400 private_key
-          ssh -i private_key ec2-user@${REMOTE_HOST}
-            sudo apt update 2>/dev/null | grep packages | cut -d '.' -f 1
-            sudo apt install -y docker
-            docker --version
-            sudo service docker start
-            echo "${{ secrets.DOCKERHUB_PASSWORD }}" | sudo docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-            sudo docker pull ${{secrets.DOCKERHUB_USERNAME}}/react-image:latest
-            sudo docker run --name react-app -p 3000:3000 gautamdockerpro/react-image:latest
-            sudo exit
+    - name: Pull image from docker hub
+      run: docker pull gautamdockerpro/react-image:latest
+    - name: Delete old container
+      run: docker rm -f react-container
+    - name: Run docker container
+      run: docker run -d -p 3000:3000 --name react-container gautamdockerpro/react-image:latest
