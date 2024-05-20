@@ -19,6 +19,7 @@ jobs :
       uses: google-github-actions/setup-gcloud@v2
       with: 
         project_id: ${{secrets.GOOGLE_PROJECT}}
+        service_account_key: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
         
     - name: build and push image
       env : 
