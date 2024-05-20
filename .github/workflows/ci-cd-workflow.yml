@@ -18,7 +18,7 @@ jobs :
     - id: "auth"
       uses: "google-github-actions/auth@v1"
       with:
-        credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
+        credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
 
     - name: install gcloud cli
       uses: google-github-actions/setup-gcloud@v2
