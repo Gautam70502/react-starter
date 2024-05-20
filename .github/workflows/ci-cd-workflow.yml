@@ -15,11 +15,19 @@ jobs :
     steps:    
     - uses: actions/checkout@v2
 
+    - id: "auth"
+      uses: "google-github-actions/auth@v1"
+      with:
+        credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
+
     - name: install gcloud cli
       uses: google-github-actions/setup-gcloud@v2
       with: 
         project_id: ${{secrets.GOOGLE_PROJECT}}
         service_account_key: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        
+    - name: "Use gcloud CLI"
+      run: "gcloud info"    
         
     - name: build and push image
       env : 
