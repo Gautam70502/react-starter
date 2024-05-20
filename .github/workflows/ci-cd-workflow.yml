@@ -24,6 +24,7 @@ jobs :
     - name: build and push image
       env : 
         GOOGLE_PROJECT : ${{secrets.GOOGLE_PROJECT}}
+        service_account_key: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
       run : |
         gcloud auth configure-docker us-east4-docker.pkg.dev
         docker build -t us-east4-docker.pkg.dev/ciphernutz/test-repo/react-img:latest .
