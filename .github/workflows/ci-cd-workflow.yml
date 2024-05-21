@@ -38,8 +38,8 @@ jobs :
         DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
       run : |
         gcloud auth configure-docker us-east4-docker.pkg.dev
-        docker build -t ${{DOCKER_IMAGE_URL}} .
-        docker push ${{DOCKER_IMAGE_URL}}
+        docker build -t ${{env.DOCKER_IMAGE_URL}} .
+        docker push ${{env.DOCKER_IMAGE_URL}}
 
   CD :
     needs : CI
@@ -50,7 +50,7 @@ jobs :
         DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
       run: |
         gcloud run deploy react-app \
-          --image ${{DOCKER_IMAGE_URL}} \
+          --image ${{env.DOCKER_IMAGE_URL}} \
           --platform managed \
           --region us-east4 \
           --allow-unauthenticated    
