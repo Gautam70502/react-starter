@@ -47,12 +47,10 @@ jobs :
     steps:    
     - name: Deploy to Cloud Run
       env :
-        DOCKER_IMAGE_URL: gcr.io/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
-      run: |
-        gcloud run deploy react-app \
-          --project react-app
-          --image ${{env.DOCKER_IMAGE_URL}} \
-          --platform managed \
-          --region us-east4 \
-          --allow-unauthenticated    
+        DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
+      uses: google-github-actions/deploy-cloudrun@v0
+      with:
+        service: react-img
+        region: us-east4
+        image: ${{env.DOCKER_IMAGE_URL}}
      
