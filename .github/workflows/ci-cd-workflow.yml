@@ -51,6 +51,7 @@ jobs :
       uses: google-github-actions/deploy-cloudrun@v2
       with:
         service: react-img
+        project: ${{secrets.GOOGLE_PROJECT}}
         region: us-east4
         image: ${{env.DOCKER_IMAGE_URL}}
      
