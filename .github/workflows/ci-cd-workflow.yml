@@ -1,4 +1,4 @@
-name : react-ci-cd-docker
+name : react-ci-cd-docker-gcp
 
 # setting up trigger event
 on : 
@@ -9,7 +9,8 @@ on :
 
  # what to do when trigger event occurs   
 jobs :
-  build_and_push_to_gcr :
+
+  CI :
     runs-on : ubuntu-latest
         
     steps:    
@@ -34,8 +35,23 @@ jobs :
       env : 
         GOOGLE_PROJECT : ${{secrets.GOOGLE_PROJECT}}
         service_account_key: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
       run : |
         gcloud auth configure-docker us-east4-docker.pkg.dev
-        docker build -t us-east4-docker.pkg.dev/ciphernutz/test-repo/react-img:latest .
-        docker push us-east4-docker.pkg.dev/ciphernutz/test-repo/react-img:latest
-       
+        docker build -t ${{DOCKER_IMAGE_URL}} .
+        docker push ${{DOCKER_IMAGE_URL}}
+
+  CD :
+    needs : CI
+    runs-on : ubuntu-latest
+    steps:    
+    - name: Deploy to Cloud Run
+      env :
+        DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
+      run: |
+        gcloud run deploy react-app \
+          --image ${{DOCKER_IMAGE_URL}} \
+          --platform managed \
+          --region us-east4 \
+          --allow-unauthenticated    
+     
