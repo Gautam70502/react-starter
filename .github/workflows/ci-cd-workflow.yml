@@ -37,7 +37,7 @@ jobs :
         service_account_key: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
         DOCKER_IMAGE_URL: gcr.io/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
       run : |
-        gcloud auth configure-docker us-east4-docker.pkg.dev
+        gcloud auth configure-docker 
         docker build -t ${{env.DOCKER_IMAGE_URL}} .
         docker push ${{env.DOCKER_IMAGE_URL}}
 
