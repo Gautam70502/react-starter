@@ -46,6 +46,8 @@ jobs :
   #   runs-on : ubuntu-latest
   #   steps:    
     - name: Deploy to Cloud Run
+    - env : 
+       SERVICE_NAME  : react-app
       run: |
         echo SERVICE_NAME $SERVICE_NAME
         gcloud run deploy $SERVICE_NAME \
