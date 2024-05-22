@@ -47,7 +47,7 @@ jobs :
   #   steps:    
     - name: Deploy to Cloud Run
       env : 
-       SERVICE_NAME  : react-app
+       SERVICE_NAME  : react-img
       run: |
         echo SERVICE_NAME $SERVICE_NAME
         gcloud run deploy $SERVICE_NAME \
