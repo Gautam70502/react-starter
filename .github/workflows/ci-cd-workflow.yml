@@ -35,23 +35,20 @@ jobs :
       env : 
         GOOGLE_PROJECT : ${{secrets.GOOGLE_PROJECT}}
         service_account_key: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
-        DOCKER_IMAGE_URL: gcr.io/us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
+        DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
       run : |
         gcloud auth configure-docker us-east4-docker.pkg.dev
         docker build -t ${{env.DOCKER_IMAGE_URL}} .
         docker push ${{env.DOCKER_IMAGE_URL}}
 
-  # CD :
-  #   needs : CI
-  #   runs-on : ubuntu-latest
-  #   steps:    
-  #   - name: Deploy to Cloud Run
-  #     env :
-  #       DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest
-  #     uses: google-github-actions/deploy-cloudrun@v2
-  #     with:
-  #       service: react-img
-  #       project: ${{secrets.GOOGLE_PROJECT}}
-  #       region: us-east4
-  #       image: ${{env.DOCKER_IMAGE_URL}}
-     
+  CD :
+    needs : CI
+    runs-on : ubuntu-latest
+    steps:    
+    - name: Deploy to Cloud Run
+      run: |
+        gcloud run deploy react-app \
+          --image us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest \
+          --platform managed \
+          --region us-east4 \
+          --allow-unauthenticated
