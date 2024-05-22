@@ -46,8 +46,7 @@ jobs :
        SERVICE_NAME  : react-app
        DOCKER_IMAGE_URL: us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest  
       run: |
-        echo SERVICE_NAME $SERVICE_NAME
-        gcloud run deploy $SERVICE_NAME \
+        gcloud run deploy ${{env.SERVICE_NAME}} \
           --image ${{env.DOCKER_IMAGE_URL}} \
           --region us-east4 \
           --project ${{secrets.GOOGLE_PROJECT}} \
