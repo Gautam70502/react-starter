@@ -47,7 +47,7 @@ jobs :
   #   steps:    
     - name: Deploy to Cloud Run
       run: |
-        gcloud run deploy react-app \
+        gcloud run deploy \
           --image us-east4-docker.pkg.dev/${{secrets.GOOGLE_PROJECT}}/test-repo/react-img:latest \
           --region us-east4 \
           --project ${{secrets.GOOGLE_PROJECT}} \
